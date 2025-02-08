@@ -57,3 +57,20 @@ body {
 		transform: translate3d(4px, 0, 0);
 	}
 }
+.sidebar {
+    border-left: 1px solid #e5e5e5; /* Bordure gauche pour séparer */
+    
+    overflow-y: auto; /* Permet de défiler si le contenu déborde */
+}
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
