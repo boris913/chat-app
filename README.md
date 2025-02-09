@@ -1,5 +1,7 @@
 # Chat-App Project: Build and Deploy a Real Time Chat App | JWT, Socket.io
-
+![Demo App](./frontend/src/assets/ChatApp.PNG)
+![Demo App](./frontend/src/assets/Login-ChatApp.png)
+![Demo App](./frontend/src/assets/Register-ChatApp.png)
 ### Setup .env file
 
 ```js
