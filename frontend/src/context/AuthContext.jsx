@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -39,6 +40,27 @@ export const AuthContextProvider = ({ children }) => {
 			window.removeEventListener('offline', handleOffline);
 		};
 	}, [authUser]);
+
+	// Assurez-vous que l'utilisateur est authentifié à chaque chargement de la page
+	useEffect(() => {
+		const fetchAuthUser = async () => {
+			const token = localStorage.getItem('token');
+			if (token) {
+				try {
+					const response = await axios.get('http://localhost:5000/api/auth/me', {
+						headers: { Authorization: `Bearer ${token}` },
+					});
+					setAuthUser(response.data);
+				} catch (error) {
+					console.error('Erreur lors de la récupération des informations utilisateur', error);
+					localStorage.removeItem('token'); // Supprime le token invalide
+					setAuthUser(null);
+				}
+			}
+		};
+
+		fetchAuthUser();
+	}, []);
 
 	return (
 		<AuthContext.Provider value={{ authUser, setAuthUser }}>
